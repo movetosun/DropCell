@@ -16,7 +16,7 @@
 //
 @property (strong, nonatomic) UITableView *tableView;
 //选中的行
-@property (nonatomic) NSInteger selectedRow;
+//@property (nonatomic) NSInteger selectedRow;
 //选中的区
 @property (nonatomic) NSInteger selectedSection;
 
@@ -53,7 +53,7 @@ static const float footerHeight = 10;
 {
     [super viewDidLoad];
     //初始化选中的行
-    self.selectedRow = -1;
+//    self.selectedRow = -1;
     
     self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];
     
@@ -115,17 +115,17 @@ static const float footerHeight = 10;
 }
 
 #pragma mark -- UITablewDeleagte
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    self.selectedRow = indexPath.row;
-    [self.tableView reloadData];
-}
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    self.selectedRow = indexPath.row;
+//    [self.tableView reloadData];
+//}
 
 
 #pragma mark - HeadViewdelegate
 -(void)selectedWith:(MyHeadView *)view
 {
-    self.selectedRow = -1;
+//    self.selectedRow = -1;
     //判断下边是否显示
     if (view.isOpen)//再次点击同一个箭头button
     {
@@ -139,7 +139,7 @@ static const float footerHeight = 10;
         
         [self.tableView reloadData];
     }
-    else
+    else//如果原先不是打开状态
     {
         self.selectedSection = view.section;
         [self reset];
@@ -148,19 +148,20 @@ static const float footerHeight = 10;
     
 }
 
-//界面重置
+//设置界面
 - (void)reset
 {
     for(int i = 0 ; i < self.headViewArray.count ; i++)
     {
         MyHeadView *head = self.headViewArray[i];
         
+        //设置选中的section
         if(head.section == self.selectedSection)
         {
             head.isOpen = YES;
             [head.button setBackgroundImage:[UIImage imageNamed:@"up"] forState:UIControlStateNormal];
             
-        }else
+        }else  //重置非选中的section
         {
             [head.button setBackgroundImage:[UIImage imageNamed:@"down"] forState:UIControlStateNormal];
             
@@ -168,6 +169,7 @@ static const float footerHeight = 10;
         }
         
     }
+    //刷新界面
     [self.tableView reloadData];
 }
 
