@@ -27,6 +27,6 @@
 //选中的section
 @property (nonatomic) NSInteger section;
 
-+(MyHeadView *)view;
++(MyHeadView *)viewWithrame:(CGRect)frame;
 
 @end

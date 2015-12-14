@@ -40,10 +40,7 @@ static const float footerHeight = 10;
         for (int i = 0; i < count; i++)
         {
             //从xib加载view
-            MyHeadView *head = [MyHeadView view];
-            //设置viewframe
-            head.frame = CGRectMake(0,0, self.view.frame.size.width, rowHight);
-            
+            MyHeadView *head = [MyHeadView viewWithrame:CGRectMake(0,0, self.view.frame.size.width, rowHight)];
             head.delegate = self;
             head.section = i;
             [_headViewArray addObject:head];

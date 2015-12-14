@@ -10,23 +10,22 @@
 
 @implementation MyHeadView
 
-+(MyHeadView *)view
++(MyHeadView *)viewWithrame:(CGRect)frame
 {
-    MyHeadView *view = [[MyHeadView alloc]init];
+    MyHeadView *view = [[MyHeadView alloc]initWithFrame:frame];
     
     return view;
 }
 
--(instancetype)init
+-(instancetype)initWithFrame:(CGRect)frame
 {
-    if (self = [super init])
+    if (self = [super initWithFrame:frame])
     {
-#warning 所有要添加的控件都在init方法内添加好,并且做好布局,需要外界/改变的,在.H文件内声明为属性,
-        self.button = [[UIButton alloc]init];
-        self.button.bounds = CGRectMake(0, 0, 20, 20);
+        self.backgroundColor = [UIColor lightGrayColor];
+        self.button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, frame.size.height, frame.size.height)];
         self.button.center = self.center;
         self.button.backgroundColor = [UIColor redColor];
-        
+        [self.button setBackgroundImage:[UIImage imageNamed:@"down"] forState:UIControlStateNormal];
         [self.button addTarget:self action:@selector(buttonClick) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.button];
     }
